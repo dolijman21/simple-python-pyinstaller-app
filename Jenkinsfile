@@ -10,12 +10,11 @@ node {
         junit 'test-reports/results.xml' 
         }
     }
-    docker.image('cdrx/pyinstaller-linux:python2').inside {
     stage('Deploy') {
         if (currentBuild.result == null || currentBuild.result == 'SUCCES') { 
         }
-                    sh 'pyinstaller --onefile sources/add2vals.py'
+            sh 'pyinstaller --onefile sources/add2vals.py'
             archiveArtifacts 'dist/add2vals'
     }
-}
+
 }
