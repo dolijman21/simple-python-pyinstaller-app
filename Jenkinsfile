@@ -11,7 +11,7 @@ node {
         }
     }
     stage('Deploy') {
-        docker.image('qnib/pytest').inside {
+        docker.image('cdrx/pyinstaller-linux:python2').inside {
             sh 'pyinstaller --onefile sources/add2vals.py'
             archiveArtifacts 'dist/add2vals'
         }
