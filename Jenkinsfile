@@ -11,8 +11,10 @@ node {
         }
     }
     stage('Deploy') {
+        docker.image('qnib/pytest').inside {
             sh 'pyinstaller --onefile sources/add2vals.py'
             archiveArtifacts 'dist/add2vals'
+        }
     }
 
 }
