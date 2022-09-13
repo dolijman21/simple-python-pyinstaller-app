@@ -14,7 +14,6 @@ node {
     stage('Deploy') {
     docker.image('cdrx/pyinstaller-linux:python2').inside {
         sh 'pyinstaller --onefile sources/add2vals.py'
-        input message: 'Finished using the web site? (Click "Proceed" to continue)'
         archiveArtifacts 'dist/add2vals'
             }
         }
