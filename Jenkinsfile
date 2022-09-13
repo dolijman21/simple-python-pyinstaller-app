@@ -12,8 +12,9 @@ node {
     }
     docker.image('cdrx/pyinstaller-linux:python2').inside {
     stage('Deploy') {
-        if (currentBuild.result == null || currentBuild.result == 'dist/add2vals') { 
+        if (currentBuild.result == null || currentBuild.result == 'SUCCES') { 
             sh 'pyinstaller --onefile sources/add2vals.py'
+            archiveArtifacts 'dist/add2vals'
             }
         }
     }
