@@ -32,6 +32,7 @@ pipeline {
         }
         stage('Deploy') { 
             agent any
+            options { quietPeriod(60) }
             environment { 
                 VOLUME = '$(pwd)/sources:/src'
                 IMAGE = 'cdrx/pyinstaller-linux:python2'
