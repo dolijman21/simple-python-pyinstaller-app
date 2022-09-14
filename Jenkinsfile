@@ -1,7 +1,5 @@
 pipeline {
     agent none
-     triggers { 
-        pollSCM('H/2 * * * *') }
     options {
         skipStagesAfterUnstable()
     }
