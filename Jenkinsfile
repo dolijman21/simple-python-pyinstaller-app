@@ -41,7 +41,7 @@ pipeline {
                 dir(path: env.BUILD_ID) { 
                     unstash(name: 'compiled-results') 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
-                    input message: 'Tunggu Selama 60 detik'
+                    input message: 'Tunggu Selama 60 detik! (Klik "Proceed" untuk menyelesaikan)'
                 }
             }
             post {
