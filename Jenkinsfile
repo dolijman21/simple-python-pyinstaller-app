@@ -27,9 +27,11 @@ pipeline {
             post {
                 always {
                     junit 'test-reports/results.xml'
-                    input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan)'
                 }
             }
+        }
+        stage('Manual approval') {
+            input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan)'
         }
         stage('Deploy') { 
             agent any
