@@ -1,6 +1,7 @@
 pipeline {
     agent none
-options { quietPeriod(60) }
+    options {
+        skipStagesAfterUnstable()
     }
     stages {
         stage('Build') {
@@ -31,6 +32,7 @@ options { quietPeriod(60) }
         }
         stage('Deploy') { 
             agent any
+            timeout(unit: 'SECONDS', time: 5) {
             environment { 
                 VOLUME = '$(pwd)/sources:/src'
                 IMAGE = 'cdrx/pyinstaller-linux:python2'
@@ -45,6 +47,7 @@ options { quietPeriod(60) }
                 success {
                     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+                    }
                 }
             }
         }
