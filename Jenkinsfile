@@ -30,9 +30,9 @@ pipeline {
                 }
             }
         }
+        timeout(unit: 'SECONDS', time: 5) {
         stage('Deploy') { 
             agent any
-            timeout(unit: 'SECONDS', time: 5) {
             environment { 
                 VOLUME = '$(pwd)/sources:/src'
                 IMAGE = 'cdrx/pyinstaller-linux:python2'
