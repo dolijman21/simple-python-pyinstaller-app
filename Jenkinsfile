@@ -1,5 +1,8 @@
 pipeline {
     agent none
+    options {
+        skipStagesAfterUnstable()
+    }
     stages {
         stage('Build') {
             agent {
@@ -27,7 +30,6 @@ pipeline {
                 }
             }
         }
-        timeout(unit: 'SECONDS', time: 5) {
         stage('Deploy') { 
             agent any
             environment { 
@@ -47,6 +49,5 @@ pipeline {
                     }
                 }
             }
-        }
     }
 }
