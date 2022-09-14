@@ -41,7 +41,7 @@ pipeline {
                 dir(path: env.BUILD_ID) { 
                     unstash(name: 'compiled-results') 
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
-                    input message: (time 1, unit 'MINUTES')
+                    input message: "time 1, unit 'MINUTES'"
                 }
             }
             post {
