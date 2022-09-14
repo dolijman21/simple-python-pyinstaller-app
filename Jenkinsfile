@@ -30,14 +30,10 @@ pipeline {
                 }
             }
         }
-        stage('Manual Approval') {
-            post {
-                always {
-                    input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk Melanjutkan!)'
-                }
-            }
-        }
         stage('Deploy') { 
+            stage('Manual Approval'){
+                input message: "Lanjutkan ke tahap Deploy? ('Klik Proceed untuk melanjutkan)"
+            }
             agent any
             environment { 
                 VOLUME = '$(pwd)/sources:/src'
