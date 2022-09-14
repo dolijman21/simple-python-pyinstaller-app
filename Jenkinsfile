@@ -31,6 +31,9 @@ pipeline {
             }
         }
         stage('Deploy') { 
+            options {
+                timeout(time: 1, unit: 'MINUTES') 
+            }
             agent any
             environment { 
                 VOLUME = '$(pwd)/sources:/src'
