@@ -31,7 +31,11 @@ pipeline {
             }
         }
         stage('Manual approval') {
-            input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan)'
+            post {
+                always {
+                input message: 'Lanjutkan ke tahap Deploy? (Klik "Proceed" untuk melanjutkan)'
+                }
+            }
         }
         stage('Deploy') { 
             agent any
